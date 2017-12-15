@@ -4,19 +4,45 @@
   "description": "Personal homepage",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "webpack --watch",
+    "start": "webpack-dev-server --open",
+    "server": "node server.js",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/kevindenight/kevin.git"
   },
   "keywords": [
-    "kevin"
+    "kevin",
+    "denight",
+    "kevindenight"
   ],
   "author": "kevin denight",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/kevindenight/kevin/issues"
   },
-  "homepage": "https://github.com/kevindenight/kevin#readme"
+  "homepage": "https://github.com/kevindenight/kevin#readme",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^0.28.7",
+    "express": "^4.16.2",
+    "file-loader": "^1.1.5",
+    "html-webpack-plugin": "^2.30.1",
+    "scss-loader": "^0.0.1",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.10.0",
+    "webpack-dev-middleware": "^2.0.1",
+    "webpack-dev-server": "^2.9.7",
+    "webpack-manifest-plugin": "^1.3.2"
+  }
 }
