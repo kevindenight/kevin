@@ -6,7 +6,10 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        app: './src/app.js'
+        app: './src/app.js',
+        vendor: [
+            'lodash'
+        ]
     },
     module: {
         rules: [
@@ -36,11 +39,6 @@ module.exports = {
             }
         ]
     },
-    devtool: 'inline-source-map',
-    devServer: {
-        contentBase: './dist',
-        hot: true
-    },
     plugins: [
         new ManifestPlugin(),
         new CleanWebpackPlugin(['dist']),
@@ -48,14 +46,15 @@ module.exports = {
             title: "Kevin homepage"
         }),
         new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor'
+        })
     ],
     externals: {
         'react': 'React',
         'react-dom': 'ReactDOM'
     },
     output: {
-        filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/'
     },
