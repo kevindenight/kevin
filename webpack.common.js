@@ -1,76 +1,73 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-    entry: {
-        app: './src/app.js',
-        vendor: [
+    'entry': {
+        'app': './src/app.js',
+        'vendor': [
             'lodash',
             'react',
             'react-dom'
         ]
     },
-    module: {
-        rules: [
+    'module': {
+        'rules': [
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: [{
-                    loader: 'babel-loader',
-                    query: {
-                        presets: [
-                            'babel-preset-env'
-                        ].map(require.resolve)
+                'exclude': /node_modules/,
+                'test': /\.js$/,
+                'use': [
+                    {
+                        'loader': 'babel-loader',
+                        'query': {
+                            'presets': ['babel-preset-env'].
+                                map(require.resolve)
+                        }
                     }
-                }]
+                ]
             },
             {
-                test: /\.scss$/,
-                use: [ {
-                    loader: 'style-loader'
-                }, {
-                    loader: 'css-loader'
-                }, {
-                    loader: 'postcss-loader'
-                }, {
-                    loader: 'sass-loader'
-                } ]
+                'test': /\.scss$/,
+                'use': [
+                    {'loader': 'style-loader'},
+                    {'loader': 'css-loader'},
+                    {'loader': 'postcss-loader'},
+                    {'loader': 'sass-loader'}
+                ]
             },
             {
-                test: /\.(png|svg|jpg|gif)$/,
-                use: [ 'file-loader' ]
+                'test': /\.(png|svg|jpg|gif)$/,
+                'use': ['file-loader']
             },
             {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: [ 'file-loader' ]
+                'test': /\.(woff|woff2|eot|ttf|otf)$/,
+                'use': ['file-loader']
             }
         ]
     },
-    plugins: [
+    'output': {
+        'path': path.resolve(__dirname, 'dist'),
+        'publicPath': '/'
+    },
+    'plugins': [
         new ManifestPlugin(),
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
-            title: "Kevin homepage",
-            template: "index.html"
+            'template': 'index.html',
+            'title': 'Kevin homepage'
         }),
         new webpack.NamedModulesPlugin(),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor'
-        }),
-        new CopyWebpackPlugin([
-            './src/static'
-        ])
-    ],
-    // externals: {
-    //     'react': 'React',
-    //     'react-dom': 'ReactDOM'
-    // },
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: '/'
-    },
+        new webpack.optimize.CommonsChunkPlugin({'name': 'vendor'}),
+        new CopyWebpackPlugin(['./src/static'])
+    ]
+
+    /*
+     * Externals: {
+     *     'react': 'React',
+     *     'react-dom': 'ReactDOM'
+     * },
+     */
 };

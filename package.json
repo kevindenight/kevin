@@ -8,7 +8,8 @@
     "flow": "flow",
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "server": "node server.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "deploy": "webpack --config webpack.prod.js && surge -p dist"
   },
   "repository": {
     "type": "git",
