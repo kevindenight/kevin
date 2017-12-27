@@ -1,11 +1,13 @@
-import _ from "lodash";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-if (process.env.NODE_ENV !== 'production') {
-    console.log('Looks like we are in development mode!');
-}
+import Avatar from './components/avatar/avatar';
+import HpBar from './components/hpBar/hpBar';
 
-console.log(_.join(['test', 'lodash']));
-
-if (x != true) {
-    console.log("xxx");
-}
+ReactDOM.render(
+    <div>
+        <Avatar />
+        <HpBar />
+    </div>,
+    document.getElementById('app')
+);

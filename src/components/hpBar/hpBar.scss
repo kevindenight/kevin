@@ -1,0 +1,9 @@
+.hpBar {
+    position: fixed;
+    top: 20px;
+    left: 160px;
+    width: 300px;
+    height: 60px;
+    background-color: rgba(220, 220, 220, 0.6);
+    clip-path: polygon(0 0, 100% 0, 93% 50%, 54% 50%, 46% 100%, 0 100%);
+}
