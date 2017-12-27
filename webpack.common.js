@@ -2,13 +2,16 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
     entry: {
         app: './src/app.js',
         vendor: [
-            'lodash'
+            'lodash',
+            'react',
+            'react-dom'
         ]
     },
     module: {
@@ -16,18 +19,26 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: {
+                use: [{
                     loader: 'babel-loader',
                     query: {
                         presets: [
                             'babel-preset-env'
                         ].map(require.resolve)
                     }
-                }
+                }]
             },
             {
                 test: /\.scss$/,
-                use: [ 'style', 'css', 'sass' ]
+                use: [ {
+                    loader: 'style-loader'
+                }, {
+                    loader: 'css-loader'
+                }, {
+                    loader: 'postcss-loader'
+                }, {
+                    loader: 'sass-loader'
+                } ]
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
@@ -43,17 +54,21 @@ module.exports = {
         new ManifestPlugin(),
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
-            title: "Kevin homepage"
+            title: "Kevin homepage",
+            template: "index.html"
         }),
         new webpack.NamedModulesPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor'
-        })
+        }),
+        new CopyWebpackPlugin([
+            './src/static'
+        ])
     ],
-    externals: {
-        'react': 'React',
-        'react-dom': 'ReactDOM'
-    },
+    // externals: {
+    //     'react': 'React',
+    //     'react-dom': 'ReactDOM'
+    // },
     output: {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/'

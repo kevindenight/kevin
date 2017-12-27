@@ -4,25 +4,14 @@ const webpack = require('webpack');
 
 module.exports = merge(common, {
     module: {
-        rules: [{
-            test: /\.js$/, // include .js files
-            enforce: "pre", // preload the jshint loader
-            exclude: /node_modules/, // exclude any and all files in the node_modules folder
-            use: [{
-                loader: "jshint-loader",
-                options: {
-                    camelcase: true,
-                    emitErrors: false,
-                    failOnHint: false,
-                    undef: true,
-                    unused: true,
-                    globals: [
-                        'console'
-                    ],
-                    esversion: '6'
-                }
-            }]
-        }]
+        rules: [
+            {
+                enforce: "pre",
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "eslint-loader",
+            }
+        ]
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin()
