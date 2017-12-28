@@ -45,7 +45,6 @@ export default class HpBar extends React.Component {
 
         }
 
-
         return false;
 
     }
@@ -76,9 +75,29 @@ export default class HpBar extends React.Component {
 
         return (
             <div className="hpBar">
-                <div className="inner">
-                    <div className={this.state.hpStatus}
-                        style={this.state.style}></div>
+                <div className="hp">
+                    <div className="inner">
+                        <div className={this.state.hpStatus}
+                            style={this.state.style}></div>
+                    </div>
+                </div>
+                <div className="status paralysis">
+                    <div className="bleeding">
+                        <svg>
+                            <defs>
+                                <clipPath id="bleeding">
+                                    <path d="M8.2,3 l-3,8 c-2,8 8,8 6,0"/>
+                                </clipPath>
+                            </defs>
+
+                            <rect x="0" y="0" width="18" height="20"
+                                style={{
+                                    'clipPath': 'url(#bleeding)',
+                                    'fill': '#ffffff',
+                                    'stroke': 'none'
+                                }}/>
+                        </svg>
+                    </div>
                 </div>
             </div>
         );

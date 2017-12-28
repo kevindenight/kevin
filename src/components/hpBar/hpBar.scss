@@ -1,49 +1,79 @@
 .hpBar {
-    position: fixed;
+    position: absolute;
     top: 20px;
     left: 160px;
     width: 300px;
     height: 30px;
-    background-color: rgba(220, 220, 220, 0.6);
-    clip-path: polygon(0 0, 300px 0, 295px 20px, 155px 20px, 150px 30px, 0 30px);
-    
-    .inner {
-        margin: 5px 0 0 5px;
-        width: 290px;
-        height: 20px;
-        background-color: rgba(250, 250, 250, 0.8);
-        clip-path: polygon(0 0, 290px 0, 287.5px 10px, 147px 10px, 141px 20px, 0 20px);
-        overflow: hidden;
+    overflow: visible;
+
+    .hp {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(220, 220, 220, 0.6);
+        clip-path: polygon(0 0, 300px 0, 295px 20px, 155px 20px, 150px 30px, 0 30px);
         
-        .hpValue {
-            position: relative;
-            width: 80%;
-            height: 100%;
-            background-color: rgb(100, 200, 60);
-            transition: all 1s ease-out;
-            
-            &::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                right: -2.5px;
-                width: 3.5px;
-                height: 20px;
-                background-color: inherit;
-                clip-path: polygon(0 0, 3.5px 0, 1px 20px, 0 20px);
-            }
-            
-            &.safe {
+        .inner {
+            margin: 5px 0 0 5px;
+            width: 290px;
+            height: 20px;
+            background-color: rgba(250, 250, 250, 0.8);
+            clip-path: polygon(0 0, 290px 0, 287.5px 10px, 147px 10px, 141px 20px, 0 20px);
+            overflow: hidden;
+
+            .hpValue {
+                position: relative;
+                width: 80%;
+                height: 100%;
                 background-color: rgb(100, 200, 60);
+                transition: width .5s ease-out, background-color .5s ease-in;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    right: -2.5px;
+                    width: 3.5px;
+                    height: 20px;
+                    background-color: inherit;
+                    clip-path: polygon(0 0, 3.5px 0, 1px 20px, 0 20px);
+                }
+
+                &.safe {
+                    background-color: rgb(100, 250, 60);
+                }
+
+                &.hurt {
+                    background-color: rgb(255, 210, 60);
+                }
+
+                &.dangerous {
+                    background-color: rgb(255, 60, 60);
+                }
             }
-            
-            &.hurt {
-                background-color: rgb(200, 250, 60);
-            }
-            
-            &.dangerous {
-                background-color: rgb(250, 60, 60);
-            }
+        }
+    }
+
+    .status {
+        position: absolute;
+        top: 0;
+        right: -20px;
+        width: 18px;
+        height: 20px;
+        clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+
+        &.bleeding {
+            background-color: rgb(240, 0, 0);
+        }
+        
+        &.paralysis {
+            background-color: rgb(255, 210, 60);
+        }
+        
+        &.poisoned {
+            background-color: rgb(200, 20, 255);
         }
     }
 }

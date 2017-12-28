@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Avatar from './components/avatar/avatar';
-import HpBar from './components/hpBar/hpBar';
+import StatusBar from './components/statusBar/statusBar';
 
 ReactDOM.render(
     <div>
-        <Avatar />
-        <HpBar />
+        <StatusBar />
     </div>,
     document.getElementById('app')
 );
