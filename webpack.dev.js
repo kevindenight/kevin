@@ -3,24 +3,24 @@ const common = require('./webpack.common.js');
 const webpack = require('webpack');
 
 module.exports = merge(common, {
-    'module': {
-        'rules': [
-            {
-                'enforce': 'pre',
-                'test': /\.js$/,
-                'exclude': /node_modules/,
-                'loader': 'eslint-loader'
-            }
-        ]
-    },
-    'plugins': [new webpack.HotModuleReplacementPlugin()],
-    'devtool': 'inline-source-map',
     'devServer': {
         'contentBase': './dist',
         'hot': true
     },
+    'devtool': 'inline-source-map',
+    'module': {
+        'rules': [
+            {
+                'enforce': 'pre',
+                'exclude': /node_modules/,
+                'loader': 'eslint-loader',
+                'test': /\.js$/
+            }
+        ]
+    },
     'output': {
-        'filename': '[name].[hash].js',
-        'chunkFilename': '[name].[hash].js'
-    }
+        'chunkFilename': '[name].[hash].js',
+        'filename': '[name].[hash].js'
+    },
+    'plugins': [new webpack.HotModuleReplacementPlugin()]
 });

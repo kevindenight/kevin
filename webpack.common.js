@@ -1,4 +1,3 @@
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
@@ -7,11 +6,15 @@ const webpack = require('webpack');
 
 module.exports = {
     'entry': {
-        'app': './src/app.js',
+        'app': [
+            './src/app.js',
+            'webpack-hot-middleware/client?name=app'
+        ],
         'vendor': [
             'lodash',
             'react',
-            'react-dom'
+            'react-dom',
+            'webpack-hot-middleware/client?name=vendor'
         ]
     },
     'module': {
@@ -54,7 +57,6 @@ module.exports = {
     },
     'plugins': [
         new ManifestPlugin(),
-        new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             'template': 'index.html',
             'title': 'Kevin homepage'
