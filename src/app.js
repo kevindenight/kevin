@@ -6,11 +6,11 @@ import {
     Route
 } from 'react-router-dom';
 
-import StatusBar from './components/statusBar/statusBar';
+import Home from './components/home/home';
 
 ReactDOM.render(
     <Router>
-        <Route exact path="/" component={StatusBar}/>
+        <Route exact path="/" component={Home}/>
     </Router>,
     document.getElementById('app')
 );
