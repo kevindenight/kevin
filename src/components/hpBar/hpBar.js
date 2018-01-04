@@ -7,7 +7,7 @@ export default class HpBar extends React.Component {
 
         super(props);
         this.updateHpValue = this.updateHpValue.bind(this);
-        this.state = {'hpStatus': 'hpValue safe'};
+        this.state = {'hpStatus': 'safe'};
 
     }
 
@@ -25,21 +25,21 @@ export default class HpBar extends React.Component {
         } else if (value < DANGEROUS_HP_VALUE) {
 
             this.setState({
-                'hpStatus': 'hpValue dangerous',
+                'hpStatus': 'dangerous',
                 'style': {'width': `${value}%`}
             });
 
         } else if (value < HURT_HP_VALUE) {
 
             this.setState({
-                'hpStatus': 'hpValue hurt',
+                'hpStatus': 'hurt',
                 'style': {'width': `${value}%`}
             });
 
         } else {
 
             this.setState({
-                'hpStatus': 'hpValue safe',
+                'hpStatus': 'safe',
                 'style': {'width': `${value}%`}
             });
 
@@ -77,27 +77,25 @@ export default class HpBar extends React.Component {
             <div className="hpBar">
                 <div className="hp">
                     <div className="inner">
-                        <div className={this.state.hpStatus}
+                        <div className={`hpValue ${this.state.hpStatus || ''}`}
                             style={this.state.style}></div>
                     </div>
                 </div>
-                <div className="status paralysis">
-                    <div className="bleeding">
-                        <svg>
-                            <defs>
-                                <clipPath id="bleeding">
-                                    <path d="M8.2,3 l-3,8 c-2,8 8,8 6,0"/>
-                                </clipPath>
-                            </defs>
+                <div className="status bleeding">
+                    <svg>
+                        <defs>
+                            <clipPath id="bleeding">
+                                <path d="M8.2,3 l-3,8 c-2,8 8,8 6,0"/>
+                            </clipPath>
+                        </defs>
 
-                            <rect x="0" y="0" width="18" height="20"
-                                style={{
-                                    'clipPath': 'url(#bleeding)',
-                                    'fill': '#ffffff',
-                                    'stroke': 'none'
-                                }}/>
-                        </svg>
-                    </div>
+                        <rect x="0" y="0" width="18" height="20"
+                            style={{
+                                'clipPath': 'url(#bleeding)',
+                                'fill': '#ffffff',
+                                'stroke': 'none'
+                            }}/>
+                    </svg>
                 </div>
             </div>
         );
