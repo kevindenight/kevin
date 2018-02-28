@@ -1,6 +1,7 @@
 module.exports = {
     "env": {
         "browser": true,
+        "commonjs": true,
         "es6": true
     },
     "extends": "eslint:recommended",
@@ -87,7 +88,7 @@ module.exports = {
         ],
         "key-spacing": "error",
         "keyword-spacing": "error",
-        "line-comment-position": "error",
+        "line-comment-position": "warn",
         "linebreak-style": [
             "error",
             "unix"
@@ -117,6 +118,7 @@ module.exports = {
         "no-caller": "error",
         "no-catch-shadow": "error",
         "no-confusing-arrow": "error",
+        "no-console": "warn",
         "no-continue": "error",
         "no-div-regex": "error",
         "no-duplicate-imports": "error",
@@ -140,7 +142,7 @@ module.exports = {
         "no-lone-blocks": "error",
         "no-lonely-if": "error",
         "no-loop-func": "error",
-        "no-magic-numbers": "warn",
+        "no-magic-numbers": "off",
         "no-mixed-operators": "error",
         "no-mixed-requires": "error",
         "no-multi-assign": "off",
@@ -207,7 +209,7 @@ module.exports = {
         "object-curly-spacing": "error",
         "object-property-newline": "error",
         "object-shorthand": "error",
-        "one-var": "warn",
+        "one-var": "off",
         "one-var-declaration-per-line": "error",
         "operator-assignment": "error",
         "operator-linebreak": "error",
