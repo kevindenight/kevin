@@ -2,6 +2,7 @@ import React from 'react';
 
 import StatusBar from '../statusBar/statusBar';
 import Background from '../background/background';
+import PanelContainer from '../panelContainer/panelContainer';
 
 export default class Home extends React.Component {
 
@@ -11,6 +12,7 @@ export default class Home extends React.Component {
             <React.Fragment>
                 <StatusBar />
                 <Background />
+                <PanelContainer />
             </React.Fragment>
         );
 
