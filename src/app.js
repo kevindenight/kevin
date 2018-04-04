@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line no-unused-vars
 import ReactDOM from 'react-dom';
 
 import {
@@ -7,6 +7,8 @@ import {
 } from 'react-router-dom';
 
 import Home from './components/home/home';
+
+import './assets/reset.scss';
 
 ReactDOM.render(
     <Router>
