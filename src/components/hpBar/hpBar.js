@@ -1,6 +1,11 @@
 import React from 'react';
 import './hpBar.scss';
 
+const DANGEROUS_HP_VALUE = 20,
+    HURT_HP_VALUE = 50,
+    MAX_HP_VALUE = 100,
+    MIN_HP_VALUE = 0;
+
 export default class HpBar extends React.Component {
 
     constructor (props) {
@@ -13,37 +18,25 @@ export default class HpBar extends React.Component {
 
     updateHpValue (value) {
 
-        const DANGEROUS_HP_VALUE = 20,
-            HURT_HP_VALUE = 50,
-            MAX_HP_VALUE = 100,
-            MIN_HP_VALUE = 0;
-
         if (value > MAX_HP_VALUE || value < MIN_HP_VALUE) {
 
             return false;
 
         } else if (value < DANGEROUS_HP_VALUE) {
 
-            this.setState({
-                'hpStatus': 'dangerous',
-                'style': {'width': `${value}%`}
-            });
+            this.setState({'hpStatus': 'dangerous'});
 
         } else if (value < HURT_HP_VALUE) {
 
-            this.setState({
-                'hpStatus': 'hurt',
-                'style': {'width': `${value}%`}
-            });
+            this.setState({'hpStatus': 'hurt'});
 
         } else {
 
-            this.setState({
-                'hpStatus': 'safe',
-                'style': {'width': `${value}%`}
-            });
+            this.setState({'hpStatus': 'safe'});
 
         }
+
+        this.setState({'style': {'width': `${value}%`}});
 
         return false;
 
@@ -51,23 +44,38 @@ export default class HpBar extends React.Component {
 
     componentDidMount () {
 
-        const hundard = 100,
-            oneS = 1000;
+        /*
+         * This.timerID = setInterval(
+         *     () => {
+         *
+         *         this.updateHpValue(Math.random() * MAX_HP_VALUE);
+         *
+         *     },
+         *     1000
+         * );
+         */
 
-        this.timerID = setInterval(
-            () => {
+        const ws = new WebSocket('ws://127.0.0.1:3000');
 
-                this.updateHpValue(Math.random() * hundard);
+        ws.onopen = () => {
 
-            },
-            oneS
-        );
+            ws.send('kevin is online now');
+
+        };
+
+        ws.onmessage = (event) => {
+
+            let data = JSON.parse(event.data);
+
+            this.updateHpValue(data.hpValue);
+
+        };
 
     }
 
     componentWillUnmount () {
 
-        clearInterval(this.timerID);
+        // ClearInterval(this.timerID);
 
     }
 
