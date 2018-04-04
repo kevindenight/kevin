@@ -45,6 +45,8 @@ export default class Background extends React.Component {
 
             baseRad = Math.PI * 2 / 6,
 
+            frameRate = 12,
+
             Line = function () {
 
                 this.reset();
@@ -54,27 +56,29 @@ export default class Background extends React.Component {
             loop = () => {
 
                 window.requestAnimationFrame(loop);
-
+                
                 ++tick;
-
-                ctx.globalCompositeOperation = 'source-over';
-                ctx.shadowBlur = 0;
-                ctx.fillStyle = 'rgba(255,255,255,alp)'.replace('alp', opts.repaintAlpha);
-                ctx.fillRect(0, 0, w, h);
-                // ctx.globalCompositeOperation = 'difference';
-
-                if (lines.length < opts.count && Math.random() < opts.spawnChance) {
-
-                    lines.push(new Line());
-
+                
+                if (tick % Math.floor(60 / frameRate) === 0) {
+                    
+                    ctx.globalCompositeOperation = 'source-over';
+                    ctx.shadowBlur = 0;
+                    ctx.fillStyle = 'rgba(255,255,255,alp)'.replace('alp', opts.repaintAlpha);
+                    ctx.fillRect(0, 0, w, h);
+                    // ctx.globalCompositeOperation = 'difference';
+                    
+                    if (lines.length < opts.count && Math.random() < opts.spawnChance) {
+                        
+                        lines.push(new Line());
+                        
+                    }
+                    
+                    lines.map((line) => {
+                        
+                        line.beginPhase();
+                        
+                    });
                 }
-
-                lines.map((line) => {
-
-                    line.beginPhase();
-
-                });
-
             };
 
         Line.prototype.reset = function () {
@@ -96,6 +100,7 @@ export default class Background extends React.Component {
         };
         Line.prototype.beginPhase = function () {
             
+            ctx.strokeStyle = 'rgba(100, 100, 100, 0.8)';
             ctx.beginPath();
             ctx.moveTo(opts.cx + (this.x * opts.len), opts.cy + (this.y * opts.len));
             
