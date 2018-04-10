@@ -8,7 +8,6 @@ export default class PanelContainer extends React.Component {
         return (
             <div className="panelContainer">
                 <div className="content">
-                    <span>Some content</span>
                 </div>
             </div>
         );
