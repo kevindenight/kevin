@@ -3,6 +3,7 @@ const common = require('./webpack.common.js');
 const webpack = require('webpack');
 
 module.exports = merge(common, {
+    'watchOptions': {'poll': true},
     'devServer': {
         'contentBase': './dist',
         'hot': true

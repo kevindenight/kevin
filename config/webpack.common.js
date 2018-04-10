@@ -63,7 +63,8 @@ module.exports = {
         }),
         new webpack.NamedModulesPlugin(),
         new webpack.optimize.CommonsChunkPlugin({'name': 'vendor'}),
-        new CopyWebpackPlugin(['./src/static'])
+        new CopyWebpackPlugin(['./src/static']),
+        new webpack.ProvidePlugin({'$': 'zepto-webpack'})
     ]
 
     /*
