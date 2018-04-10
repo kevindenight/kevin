@@ -1,7 +1,7 @@
 .hpBar {
     position: absolute;
     top: 20px;
-    left: 160px;
+    left: 120px;
     width: 300px;
     height: 30px;
     overflow: visible;
@@ -62,18 +62,41 @@
         right: -20px;
         width: 18px;
         height: 20px;
-        clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+        background-color: rgba(0, 0, 0, 0);
+        display: none;
+        
+        &:before {
+            content: "";
+            position: absolute;
+            left: 2px;
+            width: 14px;
+            height: 20px;
+            transform: skew(-16deg);
+            z-index: -1;
+        }
 
         &.bleeding {
-            background-color: rgb(240, 0, 0);
+            display: block;
+            
+            &:before {
+                background-color: rgb(240, 0, 0);
+            }
         }
         
         &.paralysis {
-            background-color: rgb(255, 210, 60);
+            display: block;
+            
+            &:before {
+                background-color: rgb(255, 210, 60);
+            }
         }
         
         &.poisoned {
-            background-color: rgb(200, 20, 255);
+            display: block;
+            
+            &:before {
+                background-color: rgb(200, 20, 255);
+            }
         }
     }
 }
