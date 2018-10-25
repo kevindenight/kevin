@@ -89,11 +89,11 @@ export default class HpBar extends React.Component {
                             style={this.state.style}></div>
                     </div>
                 </div>
-                <div className="status bleeding">
+                <div className="status">
                     <svg className="status-bleeding">
                         <defs>
                             <clipPath id="bleeding">
-                                <path d="M8.2,3 l-3,8 c-2,8 8,8 6,0"/>
+                                <path d="M14,2 c-10,4 -14,14 -6,16 c6,0 6,-8 4,-10"/>
                             </clipPath>
                         </defs>
 
