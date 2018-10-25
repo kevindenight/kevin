@@ -5,18 +5,6 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-    'entry': {
-        'app': [
-            './src/app.js',
-            'webpack-hot-middleware/client?name=app'
-        ],
-        'vendor': [
-            'lodash',
-            'react',
-            'react-dom',
-            'webpack-hot-middleware/client?name=vendor'
-        ]
-    },
     'module': {
         'rules': [
             {

@@ -7,7 +7,8 @@
     "watch": "webpack --watch --config config/webpack.dev.js",
     "flow": "flow",
     "start": "webpack-dev-server --open --config config/webpack.dev.js",
-    "server": "node-dev server-start.js --hot --inline",
+    "serverDev": "NODE_ENV=development node-dev server-start.js --hot --inline",
+    "serverProd": "NODE_ENV=production node server-start.js",
     "build": "webpack --config config/webpack.prod.js",
     "deploy": "webpack --config config/webpack.prod.js && surge -p dist"
   },

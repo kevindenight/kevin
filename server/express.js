@@ -4,7 +4,8 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import config from '../config/webpack.dev.js';
+import configDev from '../config/webpack.dev.js';
+import configProd from '../config/webpack.prod.js';
 import logger from 'morgan';
 import compress from 'compression';
 import expressWinston from 'express-winston';
@@ -13,10 +14,19 @@ import WebSocket from 'ws';
 import winstonInstance from './winston';
 import routes from './routes/index.route';
 
+const isDev = process.env.NODE_ENV !== 'production';
+const config = isDev ? configDev : configProd;
 const app = express();
 const compiler = webpack(config);
 const server = http.createServer(app);
 const wss = new WebSocket.Server({server});
+
+
+if (isDev) {
+
+    app.use(logger('dev'));
+
+}
 
 /*
  * Tell express to use the webpack-dev-middleware and use the webpack.config.js
@@ -26,12 +36,6 @@ app.use(webpackDevMiddleware(
     compiler,
     {'publicPath': config.output.publicPath}
 ));
-
-if (config.env !== 'production') {
-
-    app.use(logger('dev'));
-
-}
 
 app.use(webpackHotMiddleware(compiler));
 

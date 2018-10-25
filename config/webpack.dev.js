@@ -3,6 +3,18 @@ const common = require('./webpack.common.js');
 const webpack = require('webpack');
 
 module.exports = merge(common, {
+    'entry': {
+        'app': [
+            './src/app.js',
+            'webpack-hot-middleware/client?name=app'
+        ],
+        'vendor': [
+            'lodash',
+            'react',
+            'react-dom',
+            'webpack-hot-middleware/client?name=vendor'
+        ]
+    },
     'watchOptions': {'poll': true},
     'devServer': {
         'contentBase': './dist',

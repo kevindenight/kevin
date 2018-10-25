@@ -5,6 +5,14 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
+    'entry': {
+        'app': ['./src/app.js'],
+        'vendor': [
+            'lodash',
+            'react',
+            'react-dom'
+        ]
+    },
     'devtool': 'source-map',
     'output': {
         'chunkFilename': '[name].[chunkhash].js',
