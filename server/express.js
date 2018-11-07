@@ -26,18 +26,18 @@ if (isDev) {
 
     app.use(logger('dev'));
 
+    /*
+     * Tell express to use the webpack-dev-middleware and use the webpack.config.js
+     * configuration file as a base.
+     */
+    app.use(webpackDevMiddleware(
+        compiler,
+        {'publicPath': config.output.publicPath}
+    ));
+
+    app.use(webpackHotMiddleware(compiler));
+
 }
-
-/*
- * Tell express to use the webpack-dev-middleware and use the webpack.config.js
- * configuration file as a base.
- */
-app.use(webpackDevMiddleware(
-    compiler,
-    {'publicPath': config.output.publicPath}
-));
-
-app.use(webpackHotMiddleware(compiler));
 
 // Parse body params and attache them to req.body
 app.use(bodyParser.json());
