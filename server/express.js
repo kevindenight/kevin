@@ -17,7 +17,6 @@ import routes from './routes/index.route';
 const isDev = process.env.NODE_ENV !== 'production';
 const config = isDev ? configDev : configProd;
 const app = express();
-const compiler = webpack(config);
 const server = http.createServer(app);
 const wss = new WebSocket.Server({server});
 
@@ -26,10 +25,13 @@ if (isDev) {
 
     app.use(logger('dev'));
 
+    const compiler = webpack(config);
+
     /*
      * Tell express to use the webpack-dev-middleware and use the webpack.config.js
      * configuration file as a base.
      */
+
     app.use(webpackDevMiddleware(
         compiler,
         {'publicPath': config.output.publicPath}
@@ -74,7 +76,7 @@ wss.on('connection', (ws, req) => {
     ws.on('pong', heartbeat);
     ws.on('message', (message) => {
 
-        console.log('received: %s', message);
+        console.info('received: %s', message);
 
     });
 
