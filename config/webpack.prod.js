@@ -19,7 +19,7 @@ module.exports = merge(common, {
         'filename': '[name].[chunkhash].js'
     },
     'plugins': [
-        new CleanWebpackPlugin(['dist']),
+        new CleanWebpackPlugin(['./dist'], {'root': process.cwd()}),
         new UglifyJSPlugin({'sourceMap': true}),
         new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify('production')})
     ]
