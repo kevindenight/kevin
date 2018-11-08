@@ -1,5 +1,6 @@
 import React from 'react';
 import './hpBar.scss';
+import Domain from '../../../config/domain.json';
 
 const DANGEROUS_HP_VALUE = 20,
     HURT_HP_VALUE = 50,
@@ -55,7 +56,7 @@ export default class HpBar extends React.Component {
          * );
          */
 
-        const ws = new WebSocket('ws://127.0.0.1:3000');
+        const ws = new WebSocket(`ws://${Domain.Domain}/ws/`);
 
         ws.onopen = () => {
 
