@@ -28,14 +28,15 @@
     },
     "homepage": "https://github.com/kevindenight/kevin#readme",
     "dependencies": {
+        "babel-polyfill": "^6.26.0",
+        "babel-register": "^6.26.0",
         "compression": "^1.7.2",
         "cookie-parser": "^1.4.3",
         "express": "^4.16.2",
         "express-winston": "^2.5.0",
         "http-status": "^1.0.1",
         "morgan": "^1.9.0",
-        "babel-polyfill": "^6.26.0",
-        "babel-register": "^6.26.0"
+        "ws": "^4.0.0"
     },
     "devDependencies": {
         "autoprefixer": "^7.2.3",
@@ -80,7 +81,6 @@
         "webpack-merge": "^4.1.1",
         "webpack-zepto": "^0.0.1",
         "winston": "^2.4.0",
-        "ws": "^4.0.0",
         "zepto-webpack": "^1.2.1"
     }
 }

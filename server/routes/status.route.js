@@ -1,4 +1,5 @@
 import express from 'express';
+import WebSocket from 'ws';
 import {wss} from '../express';
 
 const router = express.Router(); // eslint-disable-line new-cap
