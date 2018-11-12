@@ -1,5 +1,4 @@
 import React from 'react';
-import WebSocket from 'ws';
 import './hpBar.scss';
 import Domain from '../../../config/domain.json';
 
