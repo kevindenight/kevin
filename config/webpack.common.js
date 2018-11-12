@@ -47,7 +47,8 @@ module.exports = {
         new ManifestPlugin(),
         new HtmlWebpackPlugin({
             'template': 'index.html',
-            'title': 'Kevin homepage'
+            'title': 'Kevin homepage',
+            'favicon': 'src/favicon/favicon.ico'
         }),
         new webpack.NamedModulesPlugin(),
         new webpack.optimize.CommonsChunkPlugin({'name': 'vendor'}),
